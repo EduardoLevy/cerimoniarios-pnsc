@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cerimoniários PNSC — Portal de Formação</title>
+<meta name="description" content="Portal oficial de formação dos Cerimoniários da Paróquia Nossa Senhora da Conceição.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<header class="topbar">
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+    <i data-lucide="menu"></i>
+  </button>
+  <div class="topbar-mark">
+    <span class="mark-cross" aria-hidden="true"></span>
+    <span class="topbar-title">Cerimoniários PNSC</span>
+  </div>
+</header>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <span class="mark-cross mark-cross--lg" aria-hidden="true"></span>
+    <p class="sidebar-brand-title">Cerimoniários<br>PNSC</p>
+    <p class="sidebar-brand-sub">Paróquia Nossa Senhora<br>da Conceição</p>
+  </div>
+
+  <nav class="sidebar-nav" aria-label="Navegação principal">
+    <a href="#inicio" class="nav-link" data-nav="inicio">
+      <i data-lucide="home"></i><span>Início</span>
+    </a>
+    <a href="#materiais" class="nav-link" data-nav="materiais">
+      <i data-lucide="book-open"></i><span>Materiais</span>
+    </a>
+    <!-- <a href="#downloads" class="nav-link" data-nav="downloads">
+      <i data-lucide="download"></i><span>Downloads</span> -->
+    </a>
+    <a href="#avisos" class="nav-link" data-nav="avisos">
+      <i data-lucide="bell"></i><span>Avisos</span>
+    </a>
+    <a href="#sobre" class="nav-link" data-nav="sobre">
+      <i data-lucide="info"></i><span>Sobre</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <p>&ldquo;Servi ao Senhor com alegria.&rdquo;</p>
+    <p class="sidebar-footer-ref">Salmo 100, 2</p>
+  </div>
+</aside>
+
+<!-- ================= MAIN ================= -->
+<main class="main">
+
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="hero-halo" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="mark-cross mark-cross--hero" aria-hidden="true"></span>
+      <h1 class="hero-title">Cerimoniários <span>PNSC</span></h1>
+      <p class="hero-dedication">Dedico este site à Mãe do meu Salvador.</p>
+      <p class="hero-subtitle">Portal oficial da formação dos cerimoniários.</p>
+      <a href="#materiais" class="btn btn-primary">
+        <span>Acessar Materiais</span>
+        <i data-lucide="arrow-down-right"></i>
+      </a>
+    </div>
+    <div class="hero-divider" aria-hidden="true"></div>
+  </section>
+
+  <!-- MENSAGEM -->
+  <section class="welcome">
+    <div class="welcome-card">
+      <span class="welcome-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p>
+        Seja bem-vindo ao portal de formação dos Cerimoniários PNSC. Aqui você encontrará
+        apostilas, materiais de estudo, documentos e conteúdos que o ajudarão a servir ao
+        altar com reverência, conhecimento e amor a Cristo.
+      </p>
+    </div>
+  </section>
+
+  <!-- MATERIAIS -->
+  <section id="materiais" class="section">
+    <div class="section-header">
+      <span class="eyebrow">Formação</span>
+      <h2>Materiais de Estudo</h2>
+      <p class="section-lead">Apostilas e conteúdos organizados para o aprofundamento no serviço do altar.</p>
+    </div>
+
+    <div class="cards-grid" id="materialsGrid" aria-live="polite">
+      <!-- Cards gerados dinamicamente via js/script.js (ver array materialsData) -->
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <!-- <section id="downloads" class="section section--muted">
+    <div class="section-header">
+      <span class="eyebrow">Recursos</span>
+      <h2>Downloads</h2>
+      <p class="section-lead">Documentos de apoio rápido para consulta antes e durante as celebrações.</p>
+    </div> -->
+
+    <!-- <div class="downloads-list" id="downloadsList"> -->
+      <!-- Itens gerados dinamicamente via js/script.js (ver array downloadsData) -->
+    <!-- </div>
+  </section> -->
+
+  <!-- AVISOS -->
+  <section id="avisos" class="section">
+    <div class="section-header">
+      <span class="eyebrow">Comunicação</span>
+      <h2>Avisos</h2>
+      <p class="section-lead">Comunicados e orientações para os cerimoniários da paróquia.</p>
+    </div>
+
+    <div class="avisos-list" id="avisosList">
+      <!-- Preenchido dinamicamente. Estado vazio por padrão — ver array avisosData em js/script.js -->
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section section--muted">
+    <div class="section-header">
+      <span class="eyebrow">O Ofício</span>
+      <h2>Sobre o Cerimoniário</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          O cerimoniário é aquele que serve o altar com atenção, silêncio e discrição, cuidando
+          para que a liturgia se desenvolva com ordem, beleza e reverência devidas ao Santo
+          Sacrifício. Seu serviço, embora muitas vezes discreto aos olhos da assembleia, é um
+          verdadeiro ministério de amor a Deus e à Igreja.
+        </p>
+        <p>
+          Este portal foi criado para apoiar a formação contínua dos cerimoniários da Paróquia
+          Nossa Senhora da Conceição, reunindo materiais de estudo, documentos e orientações
+          práticas para o exercício deste serviço com excelência.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat">
+          <i data-lucide="cross"></i>
+          <p>Reverência</p>
+        </div>
+        <div class="about-stat">
+          <i data-lucide="book-marked"></i>
+          <p>Formação</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="mark-cross mark-cross--footer" aria-hidden="true"></span>
+      <p class="footer-parish">Paróquia Nossa Senhora da Conceição, Conjunto Ceará</p>
+      <p class="footer-tagline">Servir ao altar é servir ao próprio Cristo.</p>
+
+      <blockquote class="footer-quote">
+        <p>“Que procures Cristo. Que encontres Cristo. Que ames Cristo.”</p>
+        <cite>— São Josemaria Escrivá</cite>
+      </blockquote>
+
+      <div class="footer-rule" aria-hidden="true"></div>
+
+      <p class="footer-latin">Ad maiorem Dei gloriam.</p>
+    </div>
+  </footer>
+
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>
