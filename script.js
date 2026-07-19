@@ -16,6 +16,11 @@ const materialsData = [
     description: "Conhecendo o serviço ao altar.",
     pdf: "pdfs/introducao-ao-cerimoniario.pdf"
   },
+   {
+    title: "Ano Litúrgico",
+    description: "Tempos litúrgicos e suas cores.",
+    pdf: "pdfs/ano_liturgico.pdf"
+  },
   // {
   //   title: "Objetos Litúrgicos",
   //   description: "Aprenda os nomes e funções dos objetos utilizados na liturgia.",
@@ -26,16 +31,12 @@ const materialsData = [
   //   description: "Conheça cada veste e sua utilização.",
   //   pdf: "pdfs/alfaias-e-paramentos.pdf"
   // },
+ 
   {
-    title: "Ano Litúrgico",
-    description: "Tempos litúrgicos e suas cores.",
-    pdf: "pdfs/ano_liturgico.pdf"
+    title: "Santa Missa",
+    description: "Estrutura completa da celebração.",
+    pdf: "pdfs/missa.pdf"
   },
-  // {
-  //   title: "Santa Missa",
-  //   description: "Estrutura completa da celebração.",
-  //   pdf: "pdfs/santa-missa.pdf"
-  // },
   // {
   //   title: "Cerimonial",
   //   description: "Funções práticas do cerimoniário.",
@@ -87,9 +88,14 @@ const avisosData = [
   //<font color='red'>  </font>
     {
      title: "Formação de novos cerimoniários",
-     message: "Grupo criado para formação de novos <b>cerimoniários</b>. <br> <font color='red'>Primeiras formações ja foram publicadas no site</font>",
+     message: "Grupo criado para formação de novos <b>cerimoniários</b>.",
+     date: "2026-07-18"
+   },
+    {
+     title: "Materiais",
+     message: "<font color='green'>Primeiras formações ja foram publicadas no site</font>",
      date: "2026-07-19"
-   }
+   },
 ];
 
 /* ---------------------------------------------------------
