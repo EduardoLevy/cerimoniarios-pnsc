@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cerimoniários PNSC</title>
 <meta name="description" content="Portal oficial de formação dos Cerimoniários da Paróquia Nossa Senhora da Conceição.">
-
+<link rel="icon" href="img/icon.png" type="image/x-icon">
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,6 @@
 
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
-
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,11 +44,16 @@
     <a href="#materiais" class="nav-link" data-nav="materiais">
       <i data-lucide="book-open"></i><span>Materiais</span>
     </a>
-    <!-- <a href="#downloads" class="nav-link" data-nav="downloads">
-      <i data-lucide="download"></i><span>Downloads</span> -->
+    <!--
+    <a href="#downloads" class="nav-link" data-nav="downloads">
+      <i data-lucide="download"></i><span>Downloads</span>
     </a>
+    -->
     <a href="#avisos" class="nav-link" data-nav="avisos">
       <i data-lucide="bell"></i><span>Avisos</span>
+    </a>
+    <a href="#calendario" class="nav-link" data-nav="calendario">
+      <i data-lucide="calendar-days"></i><span>Calendário</span>
     </a>
     <a href="#sobre" class="nav-link" data-nav="sobre">
       <i data-lucide="info"></i><span>Sobre</span>
@@ -71,6 +75,7 @@
     <div class="hero-content">
       <span class="mark-cross mark-cross--hero" aria-hidden="true"></span>
       <h1 class="hero-title">Cerimoniários <span>PNSC</span></h1>
+      <!-- <h4>Conjunto Ceará</h4></h1> -->
       <p class="hero-dedication">Dedico este site à Mãe do meu Salvador.</p>
       <p class="hero-subtitle">Portal oficial da formação dos cerimoniários.</p>
       <a href="#materiais" class="btn btn-primary">
@@ -102,23 +107,22 @@
     </div>
 
     <div class="cards-grid" id="materialsGrid" aria-live="polite">
-      <!-- Cards gerados dinamicamente via js/script.js (ver array materialsData) -->
+      <!-- Cards gerados dinamicamente via script.js (ver array materialsData) -->
     </div>
   </section>
 
-  <!-- DOWNLOADS -->
-  <!-- <section id="downloads" class="section section--muted">
+  <!-- DOWNLOADS (desativado por enquanto — reative o link no menu para usar) -->
+  <!--
+  <section id="downloads" class="section section--muted">
     <div class="section-header">
       <span class="eyebrow">Recursos</span>
       <h2>Downloads</h2>
       <p class="section-lead">Documentos de apoio rápido para consulta antes e durante as celebrações.</p>
-    </div> -->
-
-    <!-- <div class="downloads-list" id="downloadsList"> -->
-      <!-- Itens gerados dinamicamente via js/script.js (ver array downloadsData) -->
-    <!-- </div>
-  </section> -->
-
+    </div>
+    <div class="downloads-list" id="downloadsList">
+    </div>
+  </section>
+  -->
   <!-- AVISOS -->
   <section id="avisos" class="section">
     <div class="section-header">
@@ -128,9 +132,54 @@
     </div>
 
     <div class="avisos-list" id="avisosList">
-      <!-- Preenchido dinamicamente. Estado vazio por padrão — ver array avisosData em js/script.js -->
+      <!-- Preenchido dinamicamente. Estado vazio por padrão — ver array avisosData em script.js -->
     </div>
   </section>
+  <!-- CALENDÁRIO -->
+  <section id="calendario" class="section section--muted">
+    <div class="section-header">
+      <span class="eyebrow">Tempo Litúrgico</span>
+      <h2>Calendário</h2>
+      <p class="section-lead">
+        Tempos litúrgicos do ano, datas de formação e festas marcadas para os cerimoniários.
+      </p>
+    </div>
+
+    <div class="calendar-wrap">
+
+      <div class="calendar-card">
+        <div class="calendar-head">
+          <button class="cal-nav" id="calPrev" aria-label="Mês anterior" type="button">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <h3 class="calendar-month" id="calMonthLabel">—</h3>
+          <button class="cal-nav" id="calNext" aria-label="Próximo mês" type="button">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="calendar-weekdays" aria-hidden="true">
+          <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid" role="grid" aria-label="Dias do mês"></div>
+
+        <div class="calendar-legend">
+          <span class="legend-item"><i class="legend-dot legend-dot--roxo"></i>Advento / Quaresma</span>
+          <span class="legend-item"><i class="legend-dot legend-dot--branco"></i>Natal / Páscoa</span>
+          <span class="legend-item"><i class="legend-dot legend-dot--verde"></i>Tempo Comum</span>
+          <!-- <span class="legend-item"><i class="legend-dot legend-dot--vermelho"></i>Tríduo Pascal</span> -->
+        </div>
+      </div>
+
+      <div class="calendar-events" id="calendarEventsPanel">
+        <!-- Lista de eventos do mês, gerada dinamicamente via script.js -->
+      </div>
+
+    </div>
+  </section>
+
+  
 
   <!-- SOBRE -->
   <section id="sobre" class="section section--muted">
@@ -161,7 +210,6 @@
         <div class="about-stat">
           <i data-lucide="book-marked"></i>
           <p>Formação</p>
-        </div>
         </div>
       </div>
     </div>
