@@ -10,5 +10,11 @@
     "title": "Materiais",
     "message": "<font color='green'>Primeiras formações ja foram publicadas no site</font>\n\n<b> Teste </b>",
     "date": "2026-07-19"
+  },
+  {
+    "id": "f624d88a-ed79-4a29-b0d2-eef5b37a239b",
+    "title": "Implementação de um novo sistema de avisos on-line!",
+    "message": "Fiquem de olho nos avisos! Com a nova implementação ficou muito melhor de deixar as coisas mais claras e transparentes",
+    "date": "2026-07-23"
   }
 ]
