@@ -1,0 +1,14 @@
+[
+  {
+    "id": "aviso-1",
+    "title": "Formação de novos cerimoniários",
+    "message": "Grupo criado para formação de novos <b>cerimoniários</b>.",
+    "date": "2026-07-18"
+  },
+  {
+    "id": "aviso-2",
+    "title": "Materiais",
+    "message": "<font color='green'>Primeiras formações ja foram publicadas no site</font>",
+    "date": "2026-07-19"
+  }
+]

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin · Avisos — Cerimoniários PNSC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF; --cream:#FAF9F4; --gray-light:#F0F1EE; --gray-line:#E3E1D9;
+    --ink:#22252B; --ink-soft:#5B6066; --ink-faint:#8A8E92;
+    --gold:#C9A227; --gold-deep:#9C7C18; --gold-tint:rgba(201,162,39,0.10);
+    --blue:#1F4E8C; --blue-deep:#123157; --blue-tint:rgba(31,78,140,0.08);
+    --danger:#B23A3A; --danger-tint:rgba(178,58,58,0.1);
+    --radius:10px;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; min-height:100vh; background:var(--cream); color:var(--ink);
+    font-family:'Inter',sans-serif; line-height:1.55;
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:48px 20px;
+  }
+  h1,h2{ font-family:'Playfair Display',serif; color:var(--blue-deep); margin:0; }
+  .wrap{ width:100%; max-width:720px; }
+  .banner{
+    background:var(--gold-tint); border:1px solid var(--gold); color:var(--gold-deep);
+    border-radius:var(--radius); padding:12px 16px; font-size:0.85rem; margin-bottom:24px;
+  }
+  .card{
+    background:var(--white); border:1px solid var(--gray-line); border-radius:var(--radius);
+    padding:32px; box-shadow:0 2px 10px rgba(20,30,45,0.06); margin-bottom:20px;
+  }
+  .login-card{ max-width:400px; margin:80px auto 0; text-align:center; }
+  .login-card h1{ font-size:1.5rem; margin-bottom:6px; }
+  .login-card p{ color:var(--ink-soft); font-size:0.9rem; margin:0 0 22px; }
+  label{ display:block; font-size:0.82rem; font-weight:600; color:var(--ink-soft); margin-bottom:6px; }
+  input[type="password"], input[type="text"], input[type="date"], textarea, select{
+    width:100%; padding:11px 13px; border:1px solid var(--gray-line); border-radius:8px;
+    font-family:inherit; font-size:0.92rem; color:var(--ink); background:var(--cream);
+  }
+  input:focus, textarea:focus, select:focus{ outline:2px solid var(--blue); outline-offset:1px; }
+  textarea{ resize:vertical; min-height:70px; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 22px; border-radius:999px; border:none; font-weight:600; font-size:0.92rem;
+    cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{ background:var(--blue); color:var(--white); width:100%; }
+  .btn-primary:hover{ background:var(--blue-deep); }
+  .btn-secondary{ background:var(--gray-light); color:var(--blue-deep); }
+  .btn-secondary:hover{ background:var(--gold-tint); }
+  .btn-danger{ background:var(--danger-tint); color:var(--danger); }
+  .btn-danger:hover{ background:var(--danger); color:var(--white); }
+  .btn:disabled{ opacity:0.55; cursor:not-allowed; }
+  .top-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+  .top-row p{ margin:4px 0 0; color:var(--ink-soft); font-size:0.85rem; }
+  .aviso-row{
+    border:1px solid var(--gray-line); border-radius:8px; padding:18px; margin-bottom:14px;
+    display:flex; flex-direction:column; gap:10px; position:relative;
+  }
+  .aviso-row .row-fields{ display:grid; grid-template-columns:1fr 140px; gap:12px; }
+  .aviso-row .row-actions{ display:flex; justify-content:flex-end; }
+  .add-row{ text-align:center; margin:18px 0 6px; }
+  .status-msg{
+    font-size:0.88rem; padding:11px 14px; border-radius:8px; margin-top:14px; display:none;
+  }
+  .status-msg.ok{ display:block; background:var(--blue-tint); color:var(--blue-deep); }
+  .status-msg.error{ display:block; background:var(--danger-tint); color:var(--danger); }
+  .hidden{ display:none !important; }
+  .save-bar{ display:flex; gap:12px; align-items:center; margin-top:8px; }
+  #adminPanel{ }
+  ::placeholder{ color:var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <div class="card login-card" id="loginCard">
+    <h1>Painel de Avisos</h1>
+    <p>Página de uso interno. Não compartilhe este link.</p>
+    <form id="loginForm">
+      <label for="passwordInput">Senha</label>
+      <input type="password" id="passwordInput" autocomplete="current-password" required>
+      <div style="height:14px"></div>
+      <button type="submit" class="btn btn-primary" id="loginBtn">Entrar</button>
+      <div class="status-msg" id="loginStatus"></div>
+    </form>
+  </div>
+
+  <!-- PAINEL -->
+  <div id="adminPanel" class="hidden">
+    <div class="banner">Página de uso interno — o link não aparece em nenhum menu do site. Não compartilhe.</div>
+
+    <div class="top-row">
+      <div>
+        <h1>Avisos</h1>
+        <p>Edite, adicione ou remova avisos. As mudanças aparecem no site em poucos segundos.</p>
+      </div>
+      <button class="btn btn-secondary" id="reloadBtn" type="button">Recarregar</button>
+    </div>
+
+    <div class="card">
+      <div id="avisosContainer"></div>
+      <div class="add-row">
+        <button class="btn btn-secondary" id="addBtn" type="button">+ Novo aviso</button>
+      </div>
+      <div class="save-bar">
+        <button class="btn btn-primary" id="saveBtn" type="button" style="width:auto; padding:12px 28px;">Salvar alterações</button>
+        <span id="saveHint" style="font-size:0.82rem; color:var(--ink-faint);"></span>
+      </div>
+      <div class="status-msg" id="saveStatus"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const API_URL = "/api/avisos";
+  let sessionPassword = null;
+  let avisos = [];
+
+  const loginCard = document.getElementById("loginCard");
+  const loginForm = document.getElementById("loginForm");
+  const passwordInput = document.getElementById("passwordInput");
+  const loginBtn = document.getElementById("loginBtn");
+  const loginStatus = document.getElementById("loginStatus");
+
+  const adminPanel = document.getElementById("adminPanel");
+  const avisosContainer = document.getElementById("avisosContainer");
+  const addBtn = document.getElementById("addBtn");
+  const saveBtn = document.getElementById("saveBtn");
+  const reloadBtn = document.getElementById("reloadBtn");
+  const saveStatus = document.getElementById("saveStatus");
+  const saveHint = document.getElementById("saveHint");
+
+  function uid(){
+    return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : "id-" + Date.now() + "-" + Math.random().toString(16).slice(2);
+  }
+
+  function showStatus(el, text, type){
+    el.textContent = text;
+    el.className = "status-msg " + type;
+  }
+
+  function clearStatus(el){
+    el.textContent = "";
+    el.className = "status-msg";
+  }
+
+  async function loadAvisos(){
+    avisosContainer.innerHTML = `<p style="color:var(--ink-faint); font-size:0.9rem;">Carregando…</p>`;
+    try{
+      const res = await fetch(API_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("Não foi possível carregar os avisos.");
+      avisos = await res.json();
+      renderRows();
+    } catch(err){
+      avisosContainer.innerHTML = `<p style="color:var(--danger); font-size:0.9rem;">${err.message}</p>`;
+    }
+  }
+
+  function renderRows(){
+    avisosContainer.innerHTML = "";
+
+    if (avisos.length === 0){
+      avisosContainer.innerHTML = `<p style="color:var(--ink-faint); font-size:0.9rem;">Nenhum aviso ainda. Clique em "+ Novo aviso" para adicionar.</p>`;
+      return;
+    }
+
+    avisos.forEach((aviso) => {
+      const row = document.createElement("div");
+      row.className = "aviso-row";
+      row.dataset.id = aviso.id;
+      row.innerHTML = `
+        <div class="row-fields">
+          <div>
+            <label>Título</label>
+            <input type="text" class="f-title" value="${escapeAttr(aviso.title || "")}" placeholder="Título do aviso">
+          </div>
+          <div>
+            <label>Data</label>
+            <input type="date" class="f-date" value="${aviso.date || ""}">
+          </div>
+        </div>
+        <div>
+          <label>Mensagem <span style="font-weight:400; color:var(--ink-faint);">(aceita HTML simples, ex: &lt;b&gt;negrito&lt;/b&gt;)</span></label>
+          <textarea class="f-message" placeholder="Texto do aviso">${escapeHTML(aviso.message || "")}</textarea>
+        </div>
+        <div class="row-actions">
+          <button type="button" class="btn btn-danger btn-remove">Remover</button>
+        </div>
+      `;
+      row.querySelector(".btn-remove").addEventListener("click", () => {
+        avisos = avisos.filter(a => a.id !== aviso.id);
+        renderRows();
+      });
+      avisosContainer.appendChild(row);
+    });
+  }
+
+  function escapeAttr(str){
+    return String(str).replace(/"/g, "&quot;");
+  }
+  function escapeHTML(str){
+    return String(str).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function unescapeHTML(str){
+    return String(str).replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  }
+
+  function collectFromDOM(){
+    const rows = avisosContainer.querySelectorAll(".aviso-row");
+    const collected = [];
+    rows.forEach(row => {
+      const id = row.dataset.id;
+      const title = row.querySelector(".f-title").value.trim();
+      const date = row.querySelector(".f-date").value;
+      const message = unescapeHTML(row.querySelector(".f-message").value.trim());
+      collected.push({ id, title, message, date });
+    });
+    return collected;
+  }
+
+  addBtn.addEventListener("click", () => {
+    avisos.push({ id: uid(), title: "", message: "", date: new Date().toISOString().slice(0,10) });
+    renderRows();
+    avisosContainer.lastElementChild.querySelector(".f-title").focus();
+  });
+
+  reloadBtn.addEventListener("click", loadAvisos);
+
+  saveBtn.addEventListener("click", async () => {
+    clearStatus(saveStatus);
+    const updated = collectFromDOM();
+
+    const missingTitle = updated.some(a => !a.title);
+    if (missingTitle){
+      showStatus(saveStatus, "Cada aviso precisa de um título.", "error");
+      return;
+    }
+
+    saveBtn.disabled = true;
+    saveHint.textContent = "Salvando…";
+
+    try{
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: sessionPassword, avisos: updated })
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.status === 401){
+        showStatus(saveStatus, "Senha incorreta — faça login novamente.", "error");
+        adminPanel.classList.add("hidden");
+        loginCard.classList.remove("hidden");
+        sessionPassword = null;
+        return;
+      }
+      if (!res.ok){
+        throw new Error(data.error || "Não foi possível salvar.");
+      }
+
+      avisos = updated;
+      showStatus(saveStatus, "Salvo! As mudanças já estão no ar.", "ok");
+    } catch(err){
+      showStatus(saveStatus, err.message, "error");
+    } finally{
+      saveBtn.disabled = false;
+      saveHint.textContent = "";
+    }
+  });
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearStatus(loginStatus);
+    const value = passwordInput.value;
+    if (!value) return;
+
+    loginBtn.disabled = true;
+    sessionPassword = value;
+
+    await loadAvisos();
+
+    loginCard.classList.add("hidden");
+    adminPanel.classList.remove("hidden");
+    loginBtn.disabled = false;
+  });
+})();
+</script>
+</body>
+</html>

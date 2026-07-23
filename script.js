@@ -253,24 +253,6 @@ const calendarEvents = [
      date: "2026-08-02"
    }
 --------------------------------------------------------- */
-const avisosData = [
-    {
-     title: "Formação de novos cerimoniários",
-     message: "Grupo criado para formação de novos <b>cerimoniários</b>.",
-     date: "2026-07-18"
-   },
-    {
-     title: "Materiais",
-     message: "<font color='green'>Primeiras formações ja foram publicadas no site</font>",
-     date: "2026-07-19"
-   },
-   {
-  title: "Atualização no site",
-  message: "Calendário com datas importantes adicionado. As datas das <b>formações</b> serão publicadas assim que forem definidas.",
-  date: "2026-07-20"
-   },
-];
-
 /* ---------------------------------------------------------
    Helpers
 --------------------------------------------------------- */
@@ -345,15 +327,34 @@ function renderDownloads(){
 
 /* ---------------------------------------------------------
    Render: Avisos
+   Agora carregados dinamicamente de /api/avisos (dados vivem em
+   data/avisos.json no repositório). Editáveis pela página
+   /admin-pnsc-8f3.html — não é mais preciso mexer neste arquivo.
 --------------------------------------------------------- */
-function renderAvisos(){
+async function renderAvisos(){
   const list = document.getElementById("avisosList");
   if (!list) return;
+
+  let avisosData = [];
+
+  try {
+    const res = await fetch("/api/avisos", { cache: "no-store" });
+    if (!res.ok) throw new Error("Falha ao buscar avisos");
+    avisosData = await res.json();
+  } catch (err) {
+    console.error("Não foi possível carregar os avisos:", err);
+    list.appendChild(el("div", "avisos-empty",
+      `<i data-lucide="wifi-off"></i><p>Não foi possível carregar os avisos agora. Tente novamente em instantes.</p>`
+    ));
+    if (window.lucide) window.lucide.createIcons();
+    return;
+  }
 
   if (avisosData.length === 0){
     list.appendChild(el("div", "avisos-empty",
       `<i data-lucide="bell-off"></i><p>Nenhum aviso publicado no momento. Novos comunicados aparecerão aqui.</p>`
     ));
+    if (window.lucide) window.lucide.createIcons();
     return;
   }
 
@@ -369,6 +370,8 @@ function renderAvisos(){
       `;
       list.appendChild(card);
     });
+
+  if (window.lucide) window.lucide.createIcons();
 }
 
 /* ---------------------------------------------------------
@@ -376,7 +379,15 @@ function renderAvisos(){
 --------------------------------------------------------- */
 
 const MONTH_ABBR = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
-const EVENT_TYPE_LABEL = { formacao: "Formação", festa: "Festa", santo: "Santo(a)", memoria: "Memória", solenidade: "Solenidade",};
+const EVENT_TYPE_LABEL = {
+  formacao: "Formação",
+  festa: "Festa",
+  santo: "Santo(a)",
+  memoria: "Memória",
+  solenidade: "Solenidade",
+  beato: "Beato(a)",
+  liturgia: "Celebração"
+};
 
 const calendarState = {
   current: new Date(),   // mês/ano exibido
