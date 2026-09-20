@@ -21,27 +21,16 @@ const materialsData = [
     description: "Tempos litúrgicos e suas cores.",
     pdf: "pdfs/ano_liturgico.pdf"
   },
-  // {
-  //   title: "Objetos Litúrgicos",
-  //   description: "Aprenda os nomes e funções dos objetos utilizados na liturgia.",
-  //   pdf: "pdfs/objetos-liturgicos.pdf"
-  // },
-  // {
-  //   title: "Alfaias e Paramentos",
-  //   description: "Conheça cada veste e sua utilização.",
-  //   pdf: "pdfs/alfaias-e-paramentos.pdf"
-  // },
- 
   {
     title: "Santa Missa",
     description: "Estrutura completa da celebração.",
     pdf: "pdfs/missa.pdf"
   },
-  // {
-  //   title: "Cerimonial",
-  //   description: "Funções práticas do cerimoniário.",
-  //   pdf: "pdfs/cerimonial.pdf"
-  // },
+  {
+    title: "Missal Romano",
+    description: "Parte 1",
+    pdf: "pdfs/O-missal-Parte-01.pdf"
+  },
   // {
   //   title: "Documentos da Igreja",
   //   description: "Normas e orientações.",
@@ -228,7 +217,6 @@ const calendarEvents = [
 { date: "2026-11-19", title: "Nossa Senhora das Graças", type: "memoria" },
 
 // movéis
-{ date: "2026-09-07", title: "Independência do Brasil", type: "memoria" },
 { date: "2026-02-18", title: "Quarta-feira de Cinzas", type: "liturgia" },
 { date: "2026-03-29", title: "Domingo de Ramos", type: "solenidade" },
 { date: "2026-04-02", title: "Quinta-feira Santa", type: "solenidade" },
