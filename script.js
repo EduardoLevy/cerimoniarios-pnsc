@@ -29,7 +29,7 @@ const materialsData = [
   {
     title: "Missal Romano",
     description: "Parte 1",
-    pdf: "pdfs/O-Missal-Parte-01.pdf"
+    pdf: "pdfs/missal1.pdf"
   },
   // {
   //   title: "Documentos da Igreja",
